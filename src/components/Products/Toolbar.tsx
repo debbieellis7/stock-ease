@@ -1,5 +1,6 @@
 // Internal components
 import Status from "./dropdowns/Status";
+import Category from "./dropdowns/Category";
 import FilterArea from "./FilterArea";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -12,7 +13,7 @@ export default function Toolbar() {
           <Input placeholder="Search by name..." className="max-w-sm h-10" />
           <div className="flex items-center gap-4">
             <Status />
-            <Button variant="secondary">Category</Button>
+            <Category />
           </div>
         </div>
 

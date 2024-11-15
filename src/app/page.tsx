@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 // Internal components
 import Header from "@/components/Header";
-import Table from "@/components/Table";
+import ProductTable from "@/components/Products/ProductTable";
 import { Card } from "@/components/ui/card";
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
     <div className={`poppins p-5 ${bgColor} border w-full min-h-screen`}>
       <Card className="flex flex-col shadow-none p-5">
         <Header />
-        <Table />
+        <ProductTable />
       </Card>
     </div>
   );

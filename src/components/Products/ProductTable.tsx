@@ -1,24 +1,24 @@
 // Internal components
-import { Input } from "../ui/input";
+import Toolbar from "./Toolbar";
 import { Button } from "../ui/button";
-import FilterArea from "./FilterArea";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 export default function ProductTable() {
   return (
-    <div className="">
-      <div className="flex flex-col gap-3 mb-8 mt-6">
-        <div className="flex items-center justify-between">
-          <Input placeholder="Search by name..." className="max-w-sm h-10" />
-          <div className="flex items-center gap-4">
-            <Button variant="secondary">Status</Button>
-            <Button variant="secondary">Category</Button>
+    <Card className="mt-12 flex flex-col shadow-none poppins border-none">
+      <CardHeader className="flex justify-between p-2">
+        <div className="flex justify-between items-center">
+          <div className="">
+            <CardTitle className="font-bold text-[23px]">Products</CardTitle>
+            <p className="text-sm text-slate-600">34 products</p>
           </div>
+          <Button>Add Product</Button>
         </div>
+      </CardHeader>
 
-        <FilterArea />
-      </div>
-
-      <div></div>
-    </div>
+      <CardContent>
+        <Toolbar />
+      </CardContent>
+    </Card>
   );
 }

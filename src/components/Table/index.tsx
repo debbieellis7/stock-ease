@@ -1,5 +1,6 @@
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import ProductTable from "../Products/ProductTable";
 
 export default function Table() {
   return (
@@ -14,7 +15,9 @@ export default function Table() {
         </div>
       </CardHeader>
 
-      <CardContent></CardContent>
+      <CardContent>
+        <ProductTable />
+      </CardContent>
     </Card>
   );
 }

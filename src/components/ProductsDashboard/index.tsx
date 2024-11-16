@@ -3,6 +3,7 @@ import { useState } from "react";
 import {
   getCoreRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 
@@ -32,6 +33,7 @@ export default function ProductsDashboard() {
     state: {
       pagination,
     },
+    getSortedRowModel: getSortedRowModel(),
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

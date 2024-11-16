@@ -1,11 +1,20 @@
 // External dependencies
-import { ColumnDef } from "@tanstack/react-table";
+import { Column, ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react";
 import { IconType } from "react-icons/lib";
 import { FaCheck, FaInbox } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
+import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
 
 // Internal components
 import ProductDropdown from "./ProductDropdown";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
 
 export type Product = {
   id: string;
@@ -29,10 +38,46 @@ export type Product = {
   icon: IconType;
 };
 
-const columns: ColumnDef<Product>[] = [
+type SortableHeaderProps = {
+  column: Column<any, unknown>; // Generic type for flexibility
+  label: string;
+};
+
+const SortableHeader: React.FC<SortableHeaderProps> = ({ column, label }) => {
+  const isSorted = column.getIsSorted();
+  const SortingIcon =
+    isSorted === "asc"
+      ? IoMdArrowDown
+      : isSorted === "desc"
+      ? IoMdArrowUp
+      : ArrowUpDown;
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" aria-label={`Sort by ${label}`}>
+          {label}
+          <SortingIcon className="ml-2 h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent align="start" side="bottom">
+        <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
+          <IoMdArrowUp className="mr-2 h-4 w-4" />
+          Asc
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
+          <IoMdArrowDown className="mr-2 h-4 w-4" />
+          Desc
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "name",
-    header: "Name",
     cell: ({ row }) => {
       // Access the icon property for each row
       const Icon = row.original.icon;
@@ -48,23 +93,24 @@ const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+    header: ({ column }) => <SortableHeader column={column} label="Name" />,
   },
   {
     accessorKey: "sku",
-    header: "Sku",
+    header: ({ column }) => <SortableHeader column={column} label="SKU" />,
   },
   {
     accessorKey: "price",
-    header: "Price",
+    header: ({ column }) => <SortableHeader column={column} label="Price" />,
     cell: ({ getValue }) => `$${getValue<number>().toFixed(2)}`,
   },
   {
     accessorKey: "category",
-    header: "Category",
+    header: ({ column }) => <SortableHeader column={column} label="Category" />,
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: ({ column }) => <SortableHeader column={column} label="Status" />,
     cell: ({ row }) => {
       const status = row.original.status;
       let colorClass;
@@ -101,11 +147,13 @@ const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "quantityInStock",
-    header: "Quantity In Stock",
+    header: ({ column }) => (
+      <SortableHeader column={column} label="Quantity In Stock" />
+    ),
   },
   {
     accessorKey: "supplier",
-    header: "Supplier",
+    header: ({ column }) => <SortableHeader column={column} label="Supplier" />,
   },
   {
     id: "actions",

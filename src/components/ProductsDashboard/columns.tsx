@@ -4,6 +4,9 @@ import { IconType } from "react-icons/lib";
 import { FaCheck, FaInbox } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 
+// Internal components
+import ProductDropdown from "./ProductDropdown";
+
 export type Product = {
   id: string;
   name: string;
@@ -103,6 +106,12 @@ const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "supplier",
     header: "Supplier",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      return <ProductDropdown row={row} />;
+    },
   },
 ];
 

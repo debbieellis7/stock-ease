@@ -1,5 +1,7 @@
 // External dependencies
+import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import {
+  MdTablet,
   MdInventory,
   MdBuild,
   MdPhoneIphone,
@@ -14,6 +16,28 @@ import { Product } from "./columns";
 const productsData: Product[] = [
   {
     id: "1",
+    name: "Refrigerator",
+    supplier: "HomeGoods Co.",
+    sku: "RF404",
+    category: "Home Appliances",
+    status: "Inactive",
+    quantityInStock: 8,
+    price: 799.99,
+    icon: CgSmartHomeRefrigerator,
+  },
+  {
+    id: "2",
+    name: "Tablet",
+    supplier: "TechWorld",
+    sku: "TB505",
+    category: "Electronics",
+    status: "Draft",
+    quantityInStock: 60,
+    price: 199.99,
+    icon: MdTablet,
+  },
+  {
+    id: "3",
     name: "Screwdriver",
     supplier: "ToolSupplier Inc.",
     sku: "SD123",
@@ -24,7 +48,7 @@ const productsData: Product[] = [
     icon: MdBuild,
   },
   {
-    id: "2",
+    id: "4",
     name: "Hammer",
     supplier: "ToolSupplier Inc.",
     sku: "HM456",
@@ -35,7 +59,7 @@ const productsData: Product[] = [
     icon: MdInventory,
   },
   {
-    id: "3",
+    id: "5",
     name: "Smartphone",
     supplier: "TechWorld",
     sku: "SP789",
@@ -46,7 +70,7 @@ const productsData: Product[] = [
     icon: MdPhoneIphone,
   },
   {
-    id: "4",
+    id: "6",
     name: "Laptop",
     supplier: "TechWorld",
     sku: "LT101",
@@ -57,7 +81,7 @@ const productsData: Product[] = [
     icon: MdLaptop,
   },
   {
-    id: "5",
+    id: "7",
     name: "Microwave Oven",
     supplier: "HomeGoods Co.",
     sku: "MO202",
@@ -68,7 +92,7 @@ const productsData: Product[] = [
     icon: MdKitchen,
   },
   {
-    id: "6",
+    id: "8",
     name: "Washing Machine",
     supplier: "HomeGoods Co.",
     sku: "WM303",

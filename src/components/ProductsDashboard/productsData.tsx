@@ -1,5 +1,5 @@
 // External dependencies
-import { CgSmartHomeRefrigerator } from "react-icons/cg";
+import { CgSmartHomeRefrigerator, CgMouse } from "react-icons/cg";
 import {
   MdTablet,
   MdInventory,
@@ -8,7 +8,12 @@ import {
   MdLaptop,
   MdKitchen,
   MdHome,
+  MdEventSeat,
+  MdCoffeeMaker,
+  MdSpeaker,
+  MdWbIncandescent,
 } from "react-icons/md";
+import { TbAirConditioning } from "react-icons/tb";
 
 // Internal dependencies
 import { Product } from "./columns";
@@ -101,6 +106,72 @@ const productsData: Product[] = [
     quantityInStock: 10,
     price: 450,
     icon: MdHome,
+  },
+  {
+    id: "9",
+    name: "Gaming Mouse",
+    supplier: "GadgetKing",
+    sku: "GM001",
+    category: "Electronics",
+    status: "Published",
+    quantityInStock: 45,
+    price: 39.99,
+    icon: CgMouse,
+  },
+  {
+    id: "10",
+    name: "Office Chair",
+    supplier: "FurniPro",
+    sku: "OC002",
+    category: "Furniture",
+    status: "Inactive",
+    quantityInStock: 12,
+    price: 149.99,
+    icon: MdEventSeat,
+  },
+  {
+    id: "11",
+    name: "Coffee Maker",
+    supplier: "KitchenEssentials",
+    sku: "CM101",
+    category: "Home Appliances",
+    status: "Draft",
+    quantityInStock: 20,
+    price: 99.99,
+    icon: MdCoffeeMaker,
+  },
+  {
+    id: "12",
+    name: "Air Conditioner",
+    supplier: "HomeGoods Co.",
+    sku: "AC202",
+    category: "Home Appliances",
+    status: "Published",
+    quantityInStock: 5,
+    price: 599.99,
+    icon: TbAirConditioning,
+  },
+  {
+    id: "13",
+    name: "Bluetooth Speaker",
+    supplier: "TechWorld",
+    sku: "BS404",
+    category: "Electronics",
+    status: "Inactive",
+    quantityInStock: 50,
+    price: 79.99,
+    icon: MdSpeaker,
+  },
+  {
+    id: "14",
+    name: "Desk Lamp",
+    supplier: "HomeDecorCo.",
+    sku: "DL505",
+    category: "Home Decor",
+    status: "Draft",
+    quantityInStock: 18,
+    price: 29.99,
+    icon: MdWbIncandescent,
   },
 ];
 

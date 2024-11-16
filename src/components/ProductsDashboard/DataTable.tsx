@@ -1,11 +1,8 @@
-"use client";
-
 // External dependencies
 import {
+  Table as TableType,
   ColumnDef,
   flexRender,
-  getCoreRowModel,
-  useReactTable,
 } from "@tanstack/react-table";
 
 // Internal components
@@ -18,21 +15,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps<TData> {
+  table: TableType<TData>;
+  columns: ColumnDef<TData>[];
 }
 
-export default function DataTable<TData, TValue>({
+export default function DataTable<TData>({
+  table,
   columns,
-  data,
-}: DataTableProps<TData, TValue>) {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
+}: DataTableProps<TData>) {
   return (
     <div className="rounded-md border">
       <Table>

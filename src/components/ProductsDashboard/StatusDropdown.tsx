@@ -1,14 +1,14 @@
 // External dependencies
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { LucideGitPullRequestDraft } from "lucide-react";
+import { FaCheck, FaInbox } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 
 // Internal components
 import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -17,29 +17,48 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
 
-type Category = {
+type Status = {
   value: string;
   label: string;
+  icon: ReactNode;
 };
 
-const categories: Category[] = [
-  { value: "electronics", label: "Electronics" },
-  { value: "furniture", label: "Furniture" },
-  { value: "clothing", label: "Clothing" },
-  { value: "books", label: "Books" },
-  { value: "toys", label: "Toys" },
-  { value: "beauty", label: "Beauty" },
-  { value: "sports", label: "Sports" },
-  { value: "home-decor", label: "Home Decor" },
-  { value: "home-appliances", label: "Home Appliances" },
-  { value: "others", label: "Others" },
+const statuses: Status[] = [
+  {
+    value: "published",
+    label: "Published",
+    icon: <FaCheck />,
+  },
+  {
+    value: "inactive",
+    label: "Inactive",
+    icon: <IoClose />,
+  },
+  {
+    value: "draft",
+    label: "Draft",
+    icon: <FaInbox />,
+  },
 ];
 
-export default function Category() {
+export default function StatusDropdown() {
   const [open, setOpen] = useState(false);
+
+  function returnColor(status: string) {
+    switch (status) {
+      case "published":
+        return "text-green-600 bg-green-100";
+      case "inactive":
+        return "text-red-600 bg-red-100";
+      case "draft":
+        return "text-gray-600 bg-gray-100";
+      default:
+        break;
+    }
+  }
 
   return (
     <div className="flex items-center space-x-4 poppins">
@@ -47,29 +66,31 @@ export default function Category() {
         <PopoverTrigger asChild>
           <Button variant="secondary" className="h-10">
             <LucideGitPullRequestDraft />
-            Categories
+            Status
           </Button>
         </PopoverTrigger>
-
-        <PopoverContent className="p-0 w-56 poppins" side="bottom" align="end">
+        <PopoverContent
+          className="p-0 w-48 poppins"
+          side="bottom"
+          align="center"
+        >
           <Command className="p-1">
-            <CommandInput placeholder="Category" />
-
             <CommandList>
-              <CommandEmpty className="text-slate-500 text-sm text-center p-5">
-                No category found.
-              </CommandEmpty>
-
               <CommandGroup>
-                {categories.map((category) => (
+                {statuses.map((status) => (
                   <CommandItem
-                    key={category.value}
-                    value={category.value}
-                    className="h-9"
+                    key={status.value}
+                    value={status.value}
+                    className="h-10 mb-2"
                   >
                     <Checkbox className="size-4 rounded-[4px]" />
-                    <div className="flex items-center gap-1 p-1 rounded-lg px-3 text-[14px]">
-                      {category.label}
+                    <div
+                      className={`flex items-center gap-1 ${returnColor(
+                        status.value
+                      )} p-1 rounded-lg px-4 text-[13px]`}
+                    >
+                      {status.icon}
+                      {status.label}
                     </div>
                   </CommandItem>
                 ))}

@@ -7,11 +7,20 @@ import CategoryDropdown from "./CategoryDropdown";
 import FilterArea from "./FilterArea";
 import { Input } from "../ui/input";
 
+// Types
+import { StatusDropdownProps } from "./StatusDropdown";
+
 interface ToolbarProps<TData> {
   table: Table<TData>;
+  selectedStatuses: StatusDropdownProps["selectedStatuses"];
+  setSelectedStatuses: StatusDropdownProps["setSelectedStatuses"];
 }
 
-export default function Toolbar<TData>({ table }: ToolbarProps<TData>) {
+export default function Toolbar<TData>({
+  table,
+  selectedStatuses,
+  setSelectedStatuses,
+}: ToolbarProps<TData>) {
   return (
     <div className="flex flex-col gap-3 mb-8 mt-6">
       <div className="flex items-center justify-between">
@@ -25,7 +34,10 @@ export default function Toolbar<TData>({ table }: ToolbarProps<TData>) {
         />
 
         <div className="flex items-center gap-4">
-          <StatusDropdown />
+          <StatusDropdown
+            selectedStatuses={selectedStatuses}
+            setSelectedStatuses={setSelectedStatuses}
+          />
           <CategoryDropdown />
         </div>
       </div>

@@ -36,10 +36,11 @@ export type Product = {
   quantityInStock: number;
   price: number;
   icon: IconType;
+  createdAt: Date;
 };
 
 type SortableHeaderProps = {
-  column: Column<any, unknown>; // Generic type for flexibility
+  column: Column<Product, unknown>; // Specify the type of data
   label: string;
 };
 
@@ -107,10 +108,12 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "category",
     header: ({ column }) => <SortableHeader column={column} label="Category" />,
+    filterFn: "multiSelect",
   },
   {
     accessorKey: "status",
     header: ({ column }) => <SortableHeader column={column} label="Status" />,
+    filterFn: "multiSelect",
     cell: ({ row }) => {
       const status = row.original.status;
       let colorClass;

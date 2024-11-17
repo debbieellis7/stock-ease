@@ -25,6 +25,11 @@ type Category = {
   label: string;
 };
 
+export type CategoriesDropdownProps = {
+  selectedCategories: string[];
+  setSelectedCategories: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
 const categories: Category[] = [
   { value: "electronics", label: "Electronics" },
   { value: "furniture", label: "Furniture" },
@@ -38,8 +43,25 @@ const categories: Category[] = [
   { value: "others", label: "Others" },
 ];
 
-export default function CategoryDropdown() {
+export default function CategoriesDropdown({
+  selectedCategories,
+  setSelectedCategories,
+}: CategoriesDropdownProps) {
   const [open, setOpen] = useState(false);
+
+  function handleCheckboxChange(value: string) {
+    setSelectedCategories((prev) => {
+      const updatedCategories = prev.includes(value)
+        ? prev.filter((category) => category !== value)
+        : [...prev, value];
+
+      return updatedCategories;
+    });
+  }
+
+  function clearFilters() {
+    setSelectedCategories([]);
+  }
 
   return (
     <div className="flex items-center space-x-4 poppins">
@@ -62,12 +84,12 @@ export default function CategoryDropdown() {
 
               <CommandGroup>
                 {categories.map((category) => (
-                  <CommandItem
-                    key={category.value}
-                    value={category.value}
-                    className="h-9"
-                  >
-                    <Checkbox className="size-4 rounded-[4px]" />
+                  <CommandItem key={category.value} className="h-9">
+                    <Checkbox
+                      checked={selectedCategories.includes(category.value)}
+                      className="size-4 rounded-[4px]"
+                      onClick={() => handleCheckboxChange(category.value)}
+                    />
                     <div className="flex items-center gap-1 p-1 rounded-lg px-3 text-[14px]">
                       {category.label}
                     </div>
@@ -78,7 +100,11 @@ export default function CategoryDropdown() {
 
             <div className="flex flex-col gap-2 text-[23px]">
               <Separator />
-              <Button variant="ghost" className="text-[12px] mb-1">
+              <Button
+                variant="ghost"
+                className="text-[12px] mb-1"
+                onClick={clearFilters}
+              >
                 Clear Filters
               </Button>
             </div>

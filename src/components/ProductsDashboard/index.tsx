@@ -25,13 +25,23 @@ import columns from "./columns";
 // Types
 import { PaginationType } from "../Pagination";
 
+// Define custom filter types
+declare module "@tanstack/table-core" {
+  interface FilterFns {
+    multiSelect: FilterFn<unknown>;
+  }
+}
+
 const multiSelectFilter: FilterFn<unknown> = (
   row,
   columnId,
   filterValue: string[]
 ) => {
-  const rowValue = (row.getValue(columnId) as string).toLowerCase();
+  const rowValue = (row.getValue(columnId) as string)
+    .toLowerCase()
+    .replace(/\s+/g, "-"); // Normalize spaces to hyphens
   const lowercaseFilterValues = filterValue.map((val) => val.toLowerCase());
+
   return filterValue.length === 0 || lowercaseFilterValues.includes(rowValue);
 };
 
@@ -45,20 +55,37 @@ export default function ProductsDashboard() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
+  // Combined useEffect for both filters
   useEffect(() => {
     setColumnFilters((prev) => {
-      const filtersWithoutStatus = prev.filter(
-        (filter) => filter.id !== "status"
+      // Remove both status and category filters
+      const baseFilters = prev.filter(
+        (filter) => filter.id !== "status" && filter.id !== "category"
       );
-      const newFilters =
-        selectedStatuses.length > 0
-          ? [...filtersWithoutStatus, { id: "status", value: selectedStatuses }]
-          : filtersWithoutStatus;
+
+      const newFilters = [...baseFilters];
+
+      // Add status filter if there are selected statuses
+      if (selectedStatuses.length > 0) {
+        newFilters.push({
+          id: "status",
+          value: selectedStatuses,
+        });
+      }
+
+      // Add category filter if there are selected categories
+      if (selectedCategories.length > 0) {
+        newFilters.push({
+          id: "category",
+          value: selectedCategories,
+        });
+      }
 
       return newFilters;
     });
-  }, [selectedStatuses]);
+  }, [selectedStatuses, selectedCategories]);
 
   const table = useReactTable({
     data: productsData,
@@ -91,6 +118,8 @@ export default function ProductsDashboard() {
           table={table}
           selectedStatuses={selectedStatuses}
           setSelectedStatuses={setSelectedStatuses}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
         />
 
         <DataTable table={table} columns={columns} />

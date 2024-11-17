@@ -29,6 +29,7 @@ const productsData: Product[] = [
     quantityInStock: 8,
     price: 799.99,
     icon: CgSmartHomeRefrigerator,
+    createdAt: new Date("2023-01-15"),
   },
   {
     id: "2",
@@ -40,6 +41,7 @@ const productsData: Product[] = [
     quantityInStock: 60,
     price: 199.99,
     icon: MdTablet,
+    createdAt: new Date("2023-02-10"),
   },
   {
     id: "3",
@@ -51,6 +53,7 @@ const productsData: Product[] = [
     quantityInStock: 50,
     price: 12.99,
     icon: MdBuild,
+    createdAt: new Date("2023-03-05"),
   },
   {
     id: "4",
@@ -62,6 +65,7 @@ const productsData: Product[] = [
     quantityInStock: 30,
     price: 15.5,
     icon: MdInventory,
+    createdAt: new Date("2023-04-20"),
   },
   {
     id: "5",
@@ -73,6 +77,7 @@ const productsData: Product[] = [
     quantityInStock: 100,
     price: 499.99,
     icon: MdPhoneIphone,
+    createdAt: new Date("2023-05-18"),
   },
   {
     id: "6",
@@ -84,6 +89,7 @@ const productsData: Product[] = [
     quantityInStock: 25,
     price: 899.99,
     icon: MdLaptop,
+    createdAt: new Date("2023-06-22"),
   },
   {
     id: "7",
@@ -95,6 +101,7 @@ const productsData: Product[] = [
     quantityInStock: 15,
     price: 120,
     icon: MdKitchen,
+    createdAt: new Date("2023-07-10"),
   },
   {
     id: "8",
@@ -106,6 +113,7 @@ const productsData: Product[] = [
     quantityInStock: 10,
     price: 450,
     icon: MdHome,
+    createdAt: new Date("2023-08-15"),
   },
   {
     id: "9",
@@ -117,6 +125,7 @@ const productsData: Product[] = [
     quantityInStock: 45,
     price: 39.99,
     icon: CgMouse,
+    createdAt: new Date("2023-09-01"),
   },
   {
     id: "10",
@@ -128,6 +137,7 @@ const productsData: Product[] = [
     quantityInStock: 12,
     price: 149.99,
     icon: MdEventSeat,
+    createdAt: new Date("2023-10-12"),
   },
   {
     id: "11",
@@ -139,6 +149,7 @@ const productsData: Product[] = [
     quantityInStock: 20,
     price: 99.99,
     icon: MdCoffeeMaker,
+    createdAt: new Date("2023-11-05"),
   },
   {
     id: "12",
@@ -150,6 +161,7 @@ const productsData: Product[] = [
     quantityInStock: 5,
     price: 599.99,
     icon: TbAirConditioning,
+    createdAt: new Date("2023-12-01"),
   },
   {
     id: "13",
@@ -161,6 +173,7 @@ const productsData: Product[] = [
     quantityInStock: 50,
     price: 79.99,
     icon: MdSpeaker,
+    createdAt: new Date("2024-01-08"),
   },
   {
     id: "14",
@@ -172,6 +185,7 @@ const productsData: Product[] = [
     quantityInStock: 18,
     price: 29.99,
     icon: MdWbIncandescent,
+    createdAt: new Date("2024-02-14"),
   },
 ];
 

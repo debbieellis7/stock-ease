@@ -51,7 +51,12 @@ export default function Toolbar<TData>({
         </div>
       </div>
 
-      <FilterArea />
+      <FilterArea
+        selectedStatuses={selectedStatuses}
+        setSelectedStatuses={setSelectedStatuses}
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      />
     </div>
   );
 }

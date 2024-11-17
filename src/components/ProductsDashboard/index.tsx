@@ -1,7 +1,10 @@
 // External dependencies
 import { useState } from "react";
 import {
+  ColumnFiltersState,
+  SortingState,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
@@ -27,13 +30,21 @@ export default function ProductsDashboard() {
     pageSize: 8,
   });
 
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const table = useReactTable({
     data: productsData,
     columns,
     state: {
       pagination,
+      columnFilters,
+      sorting,
     },
+    onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -46,7 +57,7 @@ export default function ProductsDashboard() {
       </CardHeader>
 
       <CardContent>
-        <Toolbar />
+        <Toolbar table={table} />
 
         <DataTable table={table} columns={columns} />
 

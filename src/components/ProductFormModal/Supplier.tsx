@@ -15,7 +15,7 @@ export default function Supplier() {
   return (
     <div className="flex flex-col gap-2">
       <Label htmlFor="supplier-name" className="text-slate-600">
-        Suppliers name
+        Supplier&#39;s name
       </Label>
       <Input
         {...register("supplier")}

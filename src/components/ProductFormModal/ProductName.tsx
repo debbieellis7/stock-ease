@@ -25,7 +25,7 @@ export default function ProductName({ onSelectedIcon }: ProductNameProps) {
   return (
     <div className="mt-5 flex flex-col gap-2">
       <Label htmlFor="product-name" className="text-slate-600">
-        Product's Name
+        Product&#39;s Name
       </Label>
 
       <div className="flex gap-2 items-center">

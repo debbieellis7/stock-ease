@@ -32,7 +32,7 @@ export default function Price() {
             className="h-11"
             decimalScale={2}
             allowNegative={false}
-            onValueChange={(values) => {
+            onValueChange={values => {
               const { floatValue, value } = values;
 
               // If the input is empty (value is empty string), pass empty string

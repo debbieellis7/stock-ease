@@ -50,9 +50,9 @@ export default function CategoriesDropdown({
   const [open, setOpen] = useState(false);
 
   function handleCheckboxChange(value: string) {
-    setSelectedCategories((prev) => {
+    setSelectedCategories(prev => {
       const updatedCategories = prev.includes(value)
-        ? prev.filter((category) => category !== value)
+        ? prev.filter(category => category !== value)
         : [...prev, value];
 
       return updatedCategories;
@@ -83,7 +83,7 @@ export default function CategoriesDropdown({
               </CommandEmpty>
 
               <CommandGroup>
-                {categories.map((category) => (
+                {categories.map(category => (
                   <CommandItem key={category.value} className="h-9">
                     <Checkbox
                       checked={selectedCategories.includes(category.value)}

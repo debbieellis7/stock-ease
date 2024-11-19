@@ -58,10 +58,10 @@ const ProductSchema = z.object({
     .nonnegative("Quantity cannot be negative"),
   price: z
     .union([z.string(), z.number()])
-    .refine((val) => val !== "", {
+    .refine(val => val !== "", {
       message: "Price is required",
     })
-    .transform((val) => {
+    .transform(val => {
       // If it's an empty string, this will fail validation
       if (val === "") return undefined;
       // Convert to number and fix to 2 decimal places
@@ -99,7 +99,7 @@ export default function ProductFormModal() {
   const [selectedCategory, setSelectedCategory] =
     useState<Product["category"]>("Electronics");
   const [selectedIcon, setSelectedIcon] = useState<null | ReactNode>(
-    icons.find((icon) => icon.isSelected === true)?.icon
+    icons.find(icon => icon.isSelected === true)?.icon
   );
 
   const {
@@ -143,7 +143,7 @@ export default function ProductFormModal() {
     }
   }, [selectedProduct, openProductDialog]);
 
-  const onSubmit = async (data: ProductFormData) => {
+  const onSubmit = async(data: ProductFormData) => {
     if (!selectedProduct) {
       const newProduct: Product = {
         id: nanoid(),

@@ -14,7 +14,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
 
 export type Product = {
   id: string;
@@ -50,8 +49,8 @@ const SortableHeader: React.FC<SortableHeaderProps> = ({ column, label }) => {
     isSorted === "asc"
       ? IoMdArrowUp
       : isSorted === "desc"
-      ? IoMdArrowDown
-      : ArrowUpDown;
+        ? IoMdArrowDown
+        : ArrowUpDown;
 
   return (
     <DropdownMenu>
@@ -145,21 +144,21 @@ export const columns: ColumnDef<Product>[] = [
 
       // Apply color based on status
       switch (status) {
-        case "Published":
-          colorClass = "text-green-600 bg-green-100";
-          icon = <FaCheck className="text-[12px]" />;
-          break;
-        case "Draft":
-          colorClass = "text-gray-600 bg-gray-200";
-          icon = <FaInbox />;
-          break;
-        case "Inactive":
-          colorClass = "text-red-600 bg-red-100";
-          icon = <IoClose />;
-          break;
-        default:
-          colorClass = "text-gray-600 bg-gray-200";
-          icon = <FaInbox />;
+      case "Published":
+        colorClass = "text-green-600 bg-green-100";
+        icon = <FaCheck className="text-[12px]" />;
+        break;
+      case "Draft":
+        colorClass = "text-gray-600 bg-gray-200";
+        icon = <FaInbox />;
+        break;
+      case "Inactive":
+        colorClass = "text-red-600 bg-red-100";
+        icon = <IoClose />;
+        break;
+      default:
+        colorClass = "text-gray-600 bg-gray-200";
+        icon = <FaInbox />;
       }
 
       return (

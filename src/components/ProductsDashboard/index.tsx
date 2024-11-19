@@ -42,7 +42,7 @@ const multiSelectFilter: FilterFn<unknown> = (
   const rowValue = (row.getValue(columnId) as string)
     .toLowerCase()
     .replace(/\s+/g, "-"); // Normalize spaces to hyphens
-  const lowercaseFilterValues = filterValue.map((val) => val.toLowerCase());
+  const lowercaseFilterValues = filterValue.map(val => val.toLowerCase());
 
   return filterValue.length === 0 || lowercaseFilterValues.includes(rowValue);
 };
@@ -67,10 +67,10 @@ export default function ProductsDashboard() {
 
   // Combined useEffect for both filters
   useEffect(() => {
-    setColumnFilters((prev) => {
+    setColumnFilters(prev => {
       // Remove both status and category filters
       const baseFilters = prev.filter(
-        (filter) => filter.id !== "status" && filter.id !== "category"
+        filter => filter.id !== "status" && filter.id !== "category"
       );
 
       const newFilters = [...baseFilters];

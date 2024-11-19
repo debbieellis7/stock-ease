@@ -57,21 +57,21 @@ export default function StatusDropdown({
 
   function returnColor(status: string) {
     switch (status) {
-      case "published":
-        return "text-green-600 bg-green-100";
-      case "inactive":
-        return "text-red-600 bg-red-100";
-      case "draft":
-        return "text-gray-600 bg-gray-100";
-      default:
-        break;
+    case "published":
+      return "text-green-600 bg-green-100";
+    case "inactive":
+      return "text-red-600 bg-red-100";
+    case "draft":
+      return "text-gray-600 bg-gray-100";
+    default:
+      break;
     }
   }
 
   function handleCheckboxChange(value: string) {
-    setSelectedStatuses((prev) => {
+    setSelectedStatuses(prev => {
       const updatedStatuses = prev.includes(value)
-        ? prev.filter((status) => status !== value)
+        ? prev.filter(status => status !== value)
         : [...prev, value];
 
       return updatedStatuses;
@@ -99,7 +99,7 @@ export default function StatusDropdown({
           <Command className="p-1">
             <CommandList>
               <CommandGroup>
-                {statuses.map((status) => (
+                {statuses.map(status => (
                   <CommandItem
                     key={status.value}
                     value={status.value}

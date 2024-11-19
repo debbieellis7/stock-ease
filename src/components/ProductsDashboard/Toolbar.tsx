@@ -32,7 +32,7 @@ export default function Toolbar<TData>({
       <div className="flex items-center justify-between">
         <Input
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-          onChange={(e) =>
+          onChange={e =>
             table.getColumn("name")?.setFilterValue(e.target.value)
           }
           placeholder="Search by name..."

@@ -29,18 +29,18 @@ export default function Status({ selectedTab, setSelectedTab }: StatusProps) {
       >
         <TabsList className="h-11 px-2">
           <TabsTrigger
-            value="published"
+            value="Published"
             className={`h-8 ${
-              selectedTab === "published" ? "text-red-500" : ""
+              selectedTab === "Published" ? "text-red-500" : ""
             }`}
           >
             <FaCheck className="pr-1" />
             Published
           </TabsTrigger>
           <TabsTrigger
-            value="inactive"
+            value="Inactive"
             className={`h-8 ${
-              selectedTab === "inactive" ? "text-red-500" : ""
+              selectedTab === "Inactive" ? "text-red-500" : ""
             }`}
           >
             <IoClose />

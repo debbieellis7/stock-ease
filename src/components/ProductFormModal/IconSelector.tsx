@@ -66,7 +66,7 @@ export const IconProvider = ({
     try {
       const iconNode = convertStringToIcon(icon, allIcons);
       if (iconNode) {
-        const updatedIcons = allIcons.map((singleIcon) => ({
+        const updatedIcons = allIcons.map(singleIcon => ({
           ...singleIcon,
           isSelected: singleIcon.icon === iconNode,
         }));
@@ -150,8 +150,8 @@ export function IconDialogBox() {
   } = useIconContext();
 
   function updateSelection(singleIconProp: SingleIcon) {
-    setAllIcons((prevArray) =>
-      prevArray.map((singleIcon) => {
+    setAllIcons(prevArray =>
+      prevArray.map(singleIcon => {
         if (singleIcon.id === singleIconProp.id) {
           updateSelectedIcon(singleIcon.icon);
           updateOpenDialog(!openDialog);
@@ -178,7 +178,7 @@ export function IconDialogBox() {
       throw Error("Please provide an array");
     }
     return allIcons.every(
-      (icon) =>
+      icon =>
         typeof icon.id === "number" &&
         typeof icon.isSelected === "boolean" &&
         isValidElement(icon.icon)
@@ -186,10 +186,10 @@ export function IconDialogBox() {
   }
 
   return (
-    <Dialog open={openDialog} onOpenChange={(open) => updateOpenDialog(open)}>
+    <Dialog open={openDialog} onOpenChange={open => updateOpenDialog(open)}>
       <DialogTrigger asChild>
         <Button className="h-11">
-          {allIcons.find((icon) => icon.isSelected)?.icon}
+          {allIcons.find(icon => icon.isSelected)?.icon}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-2xl mt-5">

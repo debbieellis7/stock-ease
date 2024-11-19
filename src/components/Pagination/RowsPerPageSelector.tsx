@@ -27,8 +27,8 @@ export default function RowsPerPageSelector({
       <div className="text-gray-500 text-sm">Rows per page</div>
       <Select
         value={pagination.pageSize.toString()}
-        onValueChange={(value) =>
-          setPagination((prev) => ({
+        onValueChange={value =>
+          setPagination(prev => ({
             ...prev,
             pageSize: Number(value),
           }))
@@ -38,7 +38,7 @@ export default function RowsPerPageSelector({
           <SelectValue placeholder={pagination.pageSize.toString()} />
         </SelectTrigger>
         <SelectContent>
-          {[4, 6, 8, 10, 15, 20, 30].map((size) => (
+          {[4, 6, 8, 10, 15, 20, 30].map(size => (
             <SelectItem key={size} value={size.toString()}>
               {size}
             </SelectItem>

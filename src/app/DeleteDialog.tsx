@@ -41,7 +41,7 @@ export default function DeleteDialog() {
   }
 
   return (
-    <AlertDialog open={openDialog} onOpenChange={(open) => setOpenDialog(open)}>
+    <AlertDialog open={openDialog} onOpenChange={open => setOpenDialog(open)}>
       <AlertDialogContent className="p-8">
         <AlertDialogHeader>
           <AlertDialogTitle className="text-xl">

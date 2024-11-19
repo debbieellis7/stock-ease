@@ -48,7 +48,7 @@ export default function ProductCategory({
 
   return (
     <div className="flex flex-col gap-2 poppins">
-      <Label className="text-slate-600">Products Category</Label>
+      <Label className="text-slate-600">Product&#39;s Category</Label>
 
       <Select
         value={selectedCategory}
@@ -60,7 +60,7 @@ export default function ProductCategory({
           <SelectValue placeholder="Select a Category" />
         </SelectTrigger>
         <SelectContent className="poppins">
-          {categories.map((category) => (
+          {categories.map(category => (
             <SelectItem key={category} value={category}>
               {category}
             </SelectItem>

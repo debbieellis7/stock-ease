@@ -262,7 +262,11 @@ export default function ProductFormModal() {
                 </Button>
               </DialogClose>
 
-              <Button className="h-11 px-11">Add Product</Button>
+              <Button className="h-11 px-11">
+                {isLoading
+                  ? "loading..."
+                  : `${selectedProduct ? "Edit Product" : "Add Product"}`}
+              </Button>
             </DialogFooter>
           </form>
         </FormProvider>

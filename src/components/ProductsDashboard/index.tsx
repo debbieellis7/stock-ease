@@ -93,6 +93,14 @@ export default function ProductsDashboard() {
 
       return newFilters;
     });
+
+    // Set initial sorting for the "createdAt" column
+    setSorting([
+      {
+        id: "createdAt",
+        desc: true,
+      },
+    ]);
   }, [selectedStatuses, selectedCategories]);
 
   const table = useReactTable({

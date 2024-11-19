@@ -48,18 +48,23 @@ const SortableHeader: React.FC<SortableHeaderProps> = ({ column, label }) => {
   const isSorted = column.getIsSorted();
   const SortingIcon =
     isSorted === "asc"
-      ? IoMdArrowDown
-      : isSorted === "desc"
       ? IoMdArrowUp
+      : isSorted === "desc"
+      ? IoMdArrowDown
       : ArrowUpDown;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" aria-label={`Sort by ${label}`}>
+        <div
+          className={`flex items-start py-[14px] select-none cursor-pointer p-2 gap-1 ${
+            isSorted && "text-primary"
+          }`}
+          aria-label={`Sort by ${label}`}
+        >
           {label}
-          <SortingIcon className="ml-2 h-4 w-4" />
-        </Button>
+          <SortingIcon className=" h-4 w-4" />
+        </div>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="start" side="bottom">

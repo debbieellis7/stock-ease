@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 // Zustand store
-import { useProductStore } from "./useProductStore";
+import { useProductStore } from "../app/useProductStore";
 
 // Hooks
 import { useToast } from "@/hooks/use-toast";

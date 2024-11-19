@@ -4,6 +4,8 @@ import { z } from "zod";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { nanoid } from "nanoid";
+
+// Hooks
 import { useToast } from "@/hooks/use-toast";
 
 // Internal components
@@ -33,7 +35,7 @@ import icons from "./Icons";
 // Types
 import { Product } from "../ProductsDashboard/columns";
 
-// Store
+// Zustand store
 import { useProductStore } from "@/app/useProductStore";
 
 const ProductSchema = z.object({

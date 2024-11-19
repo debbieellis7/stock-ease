@@ -19,8 +19,10 @@ import Pagination from "../Pagination";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
 // Data and configuration
-import productsData from "./productsData";
 import columns from "./columns";
+
+// Zustand store
+import { useProductStore } from "@/app/useProductStore";
 
 // Types
 import { PaginationType } from "../Pagination";
@@ -46,6 +48,8 @@ const multiSelectFilter: FilterFn<unknown> = (
 };
 
 export default function ProductsDashboard() {
+  const { allProducts, loadProducts } = useProductStore();
+
   const [pagination, setPagination] = useState<PaginationType>({
     pageIndex: 0,
     pageSize: 8,
@@ -56,6 +60,10 @@ export default function ProductsDashboard() {
 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
   // Combined useEffect for both filters
   useEffect(() => {
@@ -88,7 +96,7 @@ export default function ProductsDashboard() {
   }, [selectedStatuses, selectedCategories]);
 
   const table = useReactTable({
-    data: productsData,
+    data: allProducts,
     columns,
     state: {
       pagination,
@@ -109,7 +117,7 @@ export default function ProductsDashboard() {
 
   return (
     <Card className="mt-12 flex flex-col shadow-none poppins border-none">
-      <CardHeader className="flex justify-between p-2">
+      <CardHeader className="flex justify-between">
         <Header />
       </CardHeader>
 

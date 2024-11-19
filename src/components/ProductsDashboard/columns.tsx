@@ -1,7 +1,7 @@
 // External dependencies
+import { ReactNode } from "react";
 import { Column, ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { IconType } from "react-icons/lib";
 import { FaCheck, FaInbox } from "react-icons/fa6";
 import { IoClose } from "react-icons/io5";
 import { IoMdArrowDown, IoMdArrowUp } from "react-icons/io";
@@ -35,7 +35,7 @@ export type Product = {
   status: "Published" | "Inactive" | "Draft";
   quantityInStock: number;
   price: number;
-  icon: IconType;
+  icon: ReactNode;
   createdAt: Date;
 };
 
@@ -86,8 +86,8 @@ export const columns: ColumnDef<Product>[] = [
 
       return (
         <div className="flex items-center space-x-2">
-          <div className="p-2 rounded-sm bg-primary/10">
-            <Icon className="text-lg text-primary" />
+          <div className="p-2 rounded-sm bg-primary/10 text-primary">
+            {Icon}
           </div>
 
           <span>{name}</span>
@@ -99,6 +99,25 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "sku",
     header: ({ column }) => <SortableHeader column={column} label="SKU" />,
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+      <SortableHeader column={column} label="Created At" />
+    ),
+    cell: ({ getValue }) => {
+      const date = getValue<Date>();
+
+      return (
+        <span>
+          {date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })}
+        </span>
+      );
+    },
   },
   {
     accessorKey: "price",
@@ -117,7 +136,7 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
       const status = row.original.status;
       let colorClass;
-      let icon;
+      let icon: ReactNode;
 
       // Apply color based on status
       switch (status) {
@@ -140,7 +159,7 @@ export const columns: ColumnDef<Product>[] = [
 
       return (
         <span
-          className={`px-3 py-[2px] rounded-full font-medium ${colorClass} flex gap-1 item-center w-fit`}
+          className={`px-3 py-[2px] rounded-full font-medium ${colorClass} flex gap-1 items-center w-fit`}
         >
           {icon}
           <span className="text-[13px]">{status}</span>

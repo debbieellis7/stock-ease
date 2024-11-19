@@ -1,6 +1,6 @@
 // Internal components
 import { CardTitle } from "../ui/card";
-import { Button } from "../ui/button";
+import ProductFormModal from "../ProductFormModal";
 
 export default function Header() {
   return (
@@ -9,7 +9,7 @@ export default function Header() {
         <CardTitle className="font-bold text-[23px]">Products</CardTitle>
         <p className="text-sm text-slate-600">34 products</p>
       </div>
-      <Button>Add Product</Button>
+      <ProductFormModal />
     </div>
   );
 }

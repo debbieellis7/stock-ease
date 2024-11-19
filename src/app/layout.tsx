@@ -5,8 +5,9 @@ import { Poppins } from "next/font/google";
 
 // Internal components
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
-// Global styles
+// Styles
 import "./globals.css";
 
 const geistSans = localFont({
@@ -49,6 +50,7 @@ export default function RootLayout({
         >
           {children}
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );

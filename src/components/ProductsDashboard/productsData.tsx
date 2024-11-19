@@ -28,7 +28,7 @@ const productsData: Product[] = [
     status: "Inactive",
     quantityInStock: 8,
     price: 799.99,
-    icon: CgSmartHomeRefrigerator,
+    icon: <CgSmartHomeRefrigerator />,
     createdAt: new Date("2023-01-15"),
   },
   {
@@ -40,7 +40,7 @@ const productsData: Product[] = [
     status: "Draft",
     quantityInStock: 60,
     price: 199.99,
-    icon: MdTablet,
+    icon: <MdTablet />,
     createdAt: new Date("2023-02-10"),
   },
   {
@@ -52,7 +52,7 @@ const productsData: Product[] = [
     status: "Draft",
     quantityInStock: 50,
     price: 12.99,
-    icon: MdBuild,
+    icon: <MdBuild />,
     createdAt: new Date("2023-03-05"),
   },
   {
@@ -64,7 +64,7 @@ const productsData: Product[] = [
     status: "Published",
     quantityInStock: 30,
     price: 15.5,
-    icon: MdInventory,
+    icon: <MdInventory />,
     createdAt: new Date("2023-04-20"),
   },
   {
@@ -76,7 +76,7 @@ const productsData: Product[] = [
     status: "Published",
     quantityInStock: 100,
     price: 499.99,
-    icon: MdPhoneIphone,
+    icon: <MdPhoneIphone />,
     createdAt: new Date("2023-05-18"),
   },
   {
@@ -88,7 +88,7 @@ const productsData: Product[] = [
     status: "Inactive",
     quantityInStock: 25,
     price: 899.99,
-    icon: MdLaptop,
+    icon: <MdLaptop />,
     createdAt: new Date("2023-06-22"),
   },
   {
@@ -100,7 +100,7 @@ const productsData: Product[] = [
     status: "Draft",
     quantityInStock: 15,
     price: 120,
-    icon: MdKitchen,
+    icon: <MdKitchen />,
     createdAt: new Date("2023-07-10"),
   },
   {
@@ -112,7 +112,7 @@ const productsData: Product[] = [
     status: "Published",
     quantityInStock: 10,
     price: 450,
-    icon: MdHome,
+    icon: <MdHome />,
     createdAt: new Date("2023-08-15"),
   },
   {
@@ -124,7 +124,7 @@ const productsData: Product[] = [
     status: "Published",
     quantityInStock: 45,
     price: 39.99,
-    icon: CgMouse,
+    icon: <CgMouse />,
     createdAt: new Date("2023-09-01"),
   },
   {
@@ -136,7 +136,7 @@ const productsData: Product[] = [
     status: "Inactive",
     quantityInStock: 12,
     price: 149.99,
-    icon: MdEventSeat,
+    icon: <MdEventSeat />,
     createdAt: new Date("2023-10-12"),
   },
   {
@@ -148,7 +148,7 @@ const productsData: Product[] = [
     status: "Draft",
     quantityInStock: 20,
     price: 99.99,
-    icon: MdCoffeeMaker,
+    icon: <MdCoffeeMaker />,
     createdAt: new Date("2023-11-05"),
   },
   {
@@ -160,7 +160,7 @@ const productsData: Product[] = [
     status: "Published",
     quantityInStock: 5,
     price: 599.99,
-    icon: TbAirConditioning,
+    icon: <TbAirConditioning />,
     createdAt: new Date("2023-12-01"),
   },
   {
@@ -172,7 +172,7 @@ const productsData: Product[] = [
     status: "Inactive",
     quantityInStock: 50,
     price: 79.99,
-    icon: MdSpeaker,
+    icon: <MdSpeaker />,
     createdAt: new Date("2024-01-08"),
   },
   {
@@ -184,7 +184,7 @@ const productsData: Product[] = [
     status: "Draft",
     quantityInStock: 18,
     price: 29.99,
-    icon: MdWbIncandescent,
+    icon: <MdWbIncandescent />,
     createdAt: new Date("2024-02-14"),
   },
 ];

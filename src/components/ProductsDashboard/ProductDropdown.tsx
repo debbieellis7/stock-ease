@@ -14,14 +14,24 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 
-// Internal modules
+// Zustand store
+import { useProductStore } from "@/app/useProductStore";
+
+// Types
 import { Product } from "./columns";
 
+type MenuItem = {
+  icon: JSX.Element;
+  label: string;
+  className: string;
+  separator?: undefined;
+};
+
 export default function ProductDropdown({ row }: { row: Row<Product> }) {
-  const menuItems = [
+  const { setSelectedProduct, setOpenDialog } = useProductStore();
+  const menuItems: MenuItem[] = [
     { icon: <MdContentCopy />, label: "Copy", className: "" },
     { icon: <FaRegEdit />, label: "Edit", className: "" },
-    { separator: true },
     {
       icon: <MdOutlineDelete className="text-lg" />,
       label: "Delete",
@@ -29,8 +39,16 @@ export default function ProductDropdown({ row }: { row: Row<Product> }) {
     },
   ];
 
+  function handleClickedItem(item: MenuItem) {
+    if (item.label === "Delete") {
+      setOpenDialog(true);
+      setSelectedProduct(row.original);
+    }
+  }
+
   return (
     <DropdownMenu>
+      {/* Trigger drop down which is the more icon */}
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
           <span className="sr-only">Open menu</span>
@@ -46,6 +64,7 @@ export default function ProductDropdown({ row }: { row: Row<Product> }) {
             <DropdownMenuItem
               key={index}
               className={`flex items-center gap-1 p-[10px] ${item.className}`}
+              onClick={() => handleClickedItem(item)}
             >
               {item.icon}
               <span>{item.label}</span>

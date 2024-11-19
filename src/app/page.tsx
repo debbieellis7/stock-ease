@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import Header from "@/components/Header";
 import ProductsDashboard from "@/components/ProductsDashboard";
 import { Card } from "@/components/ui/card";
+import DeleteDialog from "./DeleteDialog";
 
 export default function Home() {
   const { theme } = useTheme();
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <div className={`poppins p-5 ${bgColor} border w-full min-h-screen`}>
       <Card className="flex flex-col shadow-none p-5">
+        <DeleteDialog />
         <Header />
         <ProductsDashboard />
       </Card>

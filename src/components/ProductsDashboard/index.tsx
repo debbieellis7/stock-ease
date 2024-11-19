@@ -118,7 +118,7 @@ export default function ProductsDashboard() {
   return (
     <Card className="mt-12 flex flex-col shadow-none poppins border-none">
       <CardHeader className="flex justify-between">
-        <Header />
+        <Header allProducts={allProducts} />
       </CardHeader>
 
       <CardContent>

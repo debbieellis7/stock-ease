@@ -3,6 +3,7 @@ import { Row } from "@tanstack/react-table";
 import { FaRegEdit } from "react-icons/fa";
 import { MdContentCopy, MdOutlineDelete } from "react-icons/md";
 import { MoreHorizontal } from "lucide-react";
+import { nanoid } from "nanoid";
 
 // Internal components
 import {
@@ -17,6 +18,9 @@ import { Button } from "../ui/button";
 // Zustand store
 import { useProductStore } from "@/app/useProductStore";
 
+// Hooks
+import { useToast } from "@/hooks/use-toast";
+
 // Types
 import { Product } from "./columns";
 
@@ -28,8 +32,14 @@ type MenuItem = {
 };
 
 export default function ProductDropdown({ row }: { row: Row<Product> }) {
-  const { setSelectedProduct, setOpenDialog, setOpenProductDialog } =
-    useProductStore();
+  const {
+    setSelectedProduct,
+    setOpenDialog,
+    setOpenProductDialog,
+    addProduct,
+  } = useProductStore();
+
+  const { toast } = useToast();
   const menuItems: MenuItem[] = [
     { icon: <MdContentCopy />, label: "Copy", className: "" },
     { icon: <FaRegEdit />, label: "Edit", className: "" },
@@ -40,10 +50,28 @@ export default function ProductDropdown({ row }: { row: Row<Product> }) {
     },
   ];
 
-  function handleClickedItem(item: MenuItem) {
+  async function handleClickedItem(item: MenuItem) {
     if (item.label === "Delete") {
       setOpenDialog(true);
       setSelectedProduct(row.original);
+    }
+
+    if (item.label === "Copy") {
+      const productToCopy: Product = {
+        ...row.original,
+        id: nanoid(),
+        name: `${row.original.name} (copy)`,
+        createdAt: new Date(),
+      };
+
+      const result = await addProduct(productToCopy);
+
+      if (result) {
+        toast({
+          title: "Copy successfully",
+          description: "Product has been copied successfully",
+        });
+      }
     }
 
     if (item.label === "Edit") {

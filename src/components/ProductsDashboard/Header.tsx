@@ -1,6 +1,6 @@
 // Internal components
 import { CardTitle } from "../ui/card";
-import ProductFormModal from "../ProductFormModal";
+import ProductFormDialog from "../ProductFormDialog";
 
 // Types
 import { Product } from "./columns";
@@ -16,7 +16,7 @@ export default function Header({ allProducts }: HeaderProps) {
         <CardTitle className="font-bold text-[23px]">Products</CardTitle>
         <p className="text-sm text-slate-600">{allProducts.length} products</p>
       </div>
-      <ProductFormModal />
+      <ProductFormDialog />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 // External dependencies
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { z } from "zod";
 import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -102,53 +102,122 @@ export default function ProductFormModal() {
     icons.find((icon) => icon.isSelected === true)?.icon
   );
 
-  const { addProduct, isLoading } = useProductStore();
+  const {
+    addProduct,
+    isLoading,
+    openProductDialog,
+    setOpenProductDialog,
+    setSelectedProduct,
+    selectedProduct,
+    updateProduct,
+  } = useProductStore();
   const { toast } = useToast();
   const dialogCloseRef = useRef<HTMLButtonElement | null>(null);
 
-  const onSubmit = async (data: ProductFormData) => {
-    const newProduct: Product = {
-      id: nanoid(),
-      supplier: data.supplier,
-      name: data.productName,
-      price: data.price,
-      quantityInStock: data.quantity,
-      sku: data.sku,
-      status: selectedTab,
-      category: selectedCategory,
-      icon: selectedIcon,
-      createdAt: new Date(),
-    };
-
-    console.log("onSubmit newProduct - ", newProduct);
-
-    const result = await addProduct(newProduct);
-
-    if (result) {
-      toast({
-        title: "Success",
-        description: "Product addedd successfully!",
+  useEffect(() => {
+    if (selectedProduct) {
+      // Update form with selectedProduct details when dialog opens
+      reset({
+        productName: selectedProduct.name,
+        sku: selectedProduct.sku,
+        supplier: selectedProduct.supplier,
+        quantity: selectedProduct.quantityInStock,
+        price: selectedProduct.price,
       });
-      dialogCloseRef.current?.click();
+
+      setSelectedTab(selectedProduct.status);
+      setSelectedCategory(selectedProduct.category);
+      setSelectedIcon(selectedProduct.icon);
+    } else {
+      // Reset form value if no selectedProduct
+      reset({
+        productName: "",
+        sku: "",
+        supplier: "",
+        quantity: 0,
+        price: 0.0,
+      });
+
+      setSelectedTab("Published");
+      setSelectedCategory("Electronics");
+    }
+  }, [selectedProduct, openProductDialog]);
+
+  const onSubmit = async (data: ProductFormData) => {
+    if (!selectedProduct) {
+      const newProduct: Product = {
+        id: nanoid(),
+        supplier: data.supplier,
+        name: data.productName,
+        price: data.price,
+        quantityInStock: data.quantity,
+        sku: data.sku,
+        status: selectedTab,
+        category: selectedCategory,
+        icon: selectedIcon,
+        createdAt: new Date(),
+      };
+
+      const result = await addProduct(newProduct);
+
+      if (result) {
+        toast({
+          title: "Success",
+          description: "Product addedd successfully!",
+        });
+        dialogCloseRef.current?.click();
+      }
+    } else {
+      const productToUpdate: Product = {
+        id: selectedProduct.id,
+        createdAt: selectedProduct.createdAt,
+        supplier: data.supplier,
+        name: data.productName,
+        price: data.price,
+        quantityInStock: data.quantity,
+        sku: data.sku,
+        status: selectedTab,
+        category: selectedCategory,
+        icon: selectedIcon,
+      };
+
+      const result = await updateProduct(productToUpdate);
+
+      if (result.success) {
+        toast({
+          title: "Success",
+          description: "Product updated successfully!",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong while updating the product.",
+        });
+      }
     }
   };
 
   function handleReset() {
     reset();
+    setSelectedProduct(null);
   }
 
   function onSelectedIcon(icon: ReactNode) {
+    // Ensuring that the state update happens outside of render flow
     setTimeout(() => setSelectedIcon(icon), 0);
   }
+
   return (
-    <Dialog>
+    <Dialog open={openProductDialog} onOpenChange={setOpenProductDialog}>
       <DialogTrigger asChild>
         <Button className="h-10">Add Product</Button>
       </DialogTrigger>
 
       <DialogContent className="p-7 px-8 poppins">
         <DialogHeader>
-          <DialogTitle className="text-[22px]">Add Product</DialogTitle>
+          <DialogTitle className="text-[22px]">
+            {selectedProduct ? "Edit Product" : "Add Product"}
+          </DialogTitle>
           <DialogDescription>
             Fill in the form to add a new product
           </DialogDescription>

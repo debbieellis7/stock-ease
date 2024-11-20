@@ -257,7 +257,7 @@ export default function ProductFormDialog() {
                 onClick={() => handleReset()}
                 asChild
               >
-                <Button variant="secondary" className="h-11 px-11" asChild>
+                <Button variant="secondary" className="h-11 px-11">
                   Cancel
                 </Button>
               </DialogClose>

@@ -24,7 +24,7 @@ export default function Pagination<TData>({
   setPagination,
 }: PaginationProps<TData>) {
   return (
-    <div className="flex items-center justify-between mt-5">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mt-5 gap-3">
       <RowsPerPageSelector
         pagination={pagination}
         setPagination={setPagination}

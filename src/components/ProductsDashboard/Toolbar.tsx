@@ -29,7 +29,7 @@ export default function Toolbar<TData>({
 }: ToolbarProps<TData>) {
   return (
     <div className="flex flex-col gap-3 mb-8 mt-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-start sm:items-center justify-between gap-4">
         <Input
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={e =>
